@@ -1,0 +1,48 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="AndroidLintAcceptsUserCertificates" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintAddJavascriptInterface" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintAllowAllHostnameVerifier" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintAuthLeak" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintBadHostnameVerifier" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintCustomX509TrustManager" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintDataExtractionRules" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintDeprecatedProvider" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintEasterEgg" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintExportedContentProvider" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintExportedPreferenceActivity" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintExportedReceiver" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintExportedService" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintGetInstance" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintGrantAllUris" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintHardwareIds" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintIgnoreWithoutReason" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintInsecureBaseConfiguration" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintIntentFilterExportedReceiver" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintNewerVersionAvailable" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintOldTargetApi" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintPackageManagerGetSignatures" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintProxyPassword" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintSSLCertificateSocketFactoryCreateSocket" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintSSLCertificateSocketFactoryGetInsecure" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintSecureRandom" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintSetJavaScriptEnabled" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintSetWorldReadable" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintSetWorldWritable" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintSignatureOrSystemPermissions" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintTileProviderPermissions" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintTrustAllX509TrustManager" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintUnprotectedSMSBroadcastReceiver" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintUnsafeDynamicallyLoadedCode" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintUnsafeNativeCodeLocation" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintUnsafeProtectedBroadcastReceiver" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintUnspecifiedImmutableFlag" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintUseCheckPermission" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintUsingHttp" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintWebViewClientOnReceivedSslError" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintWorldReadableFiles" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="AndroidLintWorldWriteableFiles" enabled="true" level="ERROR" enabled_by_default="true" />
+    <inspection_tool class="UnusedLibrary" enabled="true" level="ERROR" enabled_by_default="true" />
+  </profile>
+</component>
