@@ -16,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
@@ -161,6 +162,7 @@ private fun MovieCard(movie: Movie?) {
             .fillMaxWidth()
             .padding(8.dp)
             .clickable { launchWebIntent(movie, context) }
+            .testTag("movie-card")
     ) {
         Column(modifier = Modifier.padding(horizontal = 4.dp, vertical = 8.dp)) {
             TitleAndYearHeader(movie)
