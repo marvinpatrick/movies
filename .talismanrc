@@ -1,0 +1,5 @@
+fileignoreconfig:
+- filename: app/src/main/res/xml/backup_rules.xml
+  checksum: f301105c8a8ea151b3f18ed0a7c5d6e60eb9f2d07010daa12117b1fbe72e56a0
+- filename: .idea/inspectionProfiles/Project_Default.xml
+  checksum: 78cab0e8aba38a386052d790340cfd00d4aaa3153c44b9a6f6a216d82f7c426f
