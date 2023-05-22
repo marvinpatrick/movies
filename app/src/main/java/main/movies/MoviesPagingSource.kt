@@ -4,7 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import app.AppConstants
 
-class MoviesPagingSource(private val moviesApi: MoviesApi, private val genre: String?) :
+class MoviesPagingSource(private val moviesApi: MoviesApi, private val genre: String? = null) :
     PagingSource<Int, Movie>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
@@ -25,14 +25,14 @@ class MoviesPagingSource(private val moviesApi: MoviesApi, private val genre: St
         }
     }
 
-    private suspend fun getData(startIndex: Int): ArrayList<Movie> {
+    private suspend fun getData(startIndex: Int? = null): ArrayList<Movie> {
         return moviesApi.getMovies(genre = genre, from = startIndex).body()
             ?: arrayListOf()
     }
 
-    private fun getStartIndex(page: Int): Int {
+    private fun getStartIndex(page: Int): Int? {
         return if (page == 1) {
-            0
+            null
         } else {
             (page - 1) * AppConstants.PAGE_SIZE
         }
