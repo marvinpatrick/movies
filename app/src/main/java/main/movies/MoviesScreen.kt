@@ -155,15 +155,6 @@ private fun MovieCard(movie: Movie?) {
     }
 }
 
-private fun launchWebIntent(movie: Movie?, context: Context) {
-    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(movie?.url))
-    ContextCompat.startActivity(
-        context,
-        Intent.createChooser(intent, "View more details..."),
-        null
-    )
-}
-
 @Composable
 private fun TitleAndYearHeader(movie: Movie?) {
     Row {
@@ -204,6 +195,15 @@ private fun Genres(movie: Movie?) {
         }
         Text(text = genreStringBuilder.toString())
     }
+}
+
+private fun launchWebIntent(movie: Movie?, context: Context) {
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(movie?.url))
+    ContextCompat.startActivity(
+        context,
+        Intent.createChooser(intent, "View more details..."),
+        null
+    )
 }
 
 private fun shouldAddSeparator(
