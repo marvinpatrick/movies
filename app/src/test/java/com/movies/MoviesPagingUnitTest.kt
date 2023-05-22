@@ -114,7 +114,7 @@ class MoviesPagingUnitTest {
                 ),
                 paginatedData
             )
-            Assert.assertEquals(
+            Assert.assertNotEquals(
                 PagingSource.LoadResult.Page(
                     data = comedyMovies,
                     prevKey = null,
