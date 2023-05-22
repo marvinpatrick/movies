@@ -1,5 +1,9 @@
 package main.movies
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
@@ -11,8 +15,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemContentType
@@ -133,39 +139,70 @@ private fun Movies(movies: LazyPagingItems<Movie>) {
 
 @Composable
 private fun MovieCard(movie: Movie?) {
+    val context = LocalContext.current
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(8.dp)
+            .clickable { launchWebIntent(movie, context) }
     ) {
-        Column {
-            Row {
-                val indexOfDash = movie?.release_date?.indexOf("-") ?: movie?.release_date?.length
-                val releaseYear = if (indexOfDash != null) {
-                    movie?.release_date?.substring(0, indexOfDash)
-                } else {
-                    movie?.release_date
-                }
-                Text(text = "${movie?.title ?: ""} $releaseYear")
-            }
-            Divider(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(2.dp)
-                    .padding(horizontal = 2.dp)
-            )
-            Text(text = movie?.overview ?: "")
-            movie?.genres?.let { genres ->
-                val genreStringBuilder = StringBuilder()
-                genres.forEachIndexed { index, genre ->
-                    genreStringBuilder.append(genre)
-                    if (shouldAddSeparator(index, genres)) {
-                        genreStringBuilder.append(", ")
-                    }
-                }
-                Text(text = genreStringBuilder.toString())
+        Column(modifier = Modifier.padding(horizontal = 4.dp, vertical = 8.dp)) {
+            TitleAndYearHeader(movie)
+            LineSeparator()
+            Overview(movie)
+            Genres(movie)
+        }
+    }
+}
+
+private fun launchWebIntent(movie: Movie?, context: Context) {
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(movie?.url))
+    ContextCompat.startActivity(
+        context,
+        Intent.createChooser(intent, "View more details..."),
+        null
+    )
+}
+
+@Composable
+private fun TitleAndYearHeader(movie: Movie?) {
+    Row {
+        val indexOfDash = movie?.release_date?.indexOf("-") ?: movie?.release_date?.length
+        val releaseYear = if (indexOfDash != null) {
+            movie?.release_date?.substring(0, indexOfDash)
+        } else {
+            movie?.release_date
+        }
+        Text(text = "${movie?.title ?: ""} $releaseYear")
+    }
+}
+
+@Composable
+private fun LineSeparator() {
+    Divider(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(2.dp)
+            .padding(horizontal = 2.dp)
+    )
+}
+
+@Composable
+private fun Overview(movie: Movie?) {
+    Text(text = movie?.overview ?: "")
+}
+
+@Composable
+private fun Genres(movie: Movie?) {
+    movie?.genres?.let { genres ->
+        val genreStringBuilder = StringBuilder()
+        genres.forEachIndexed { index, genre ->
+            genreStringBuilder.append(genre)
+            if (shouldAddSeparator(index, genres)) {
+                genreStringBuilder.append(", ")
             }
         }
+        Text(text = genreStringBuilder.toString())
     }
 }
 
