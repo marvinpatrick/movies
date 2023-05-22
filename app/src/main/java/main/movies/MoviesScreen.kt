@@ -87,7 +87,8 @@ private fun GenresList(
                     val genreName = genre.firstOrNull().toString()
                     val genreCount =
                         genre.getOrNull(INDEX_OF_GENRE_COUNT).toString().toDoubleOrNull()?.toInt()
-                    Text(text = "$genreName (${genreCount})")
+                    val formattedCount = "%,d".format(genreCount)
+                    Text(text = "$genreName (${formattedCount})")
                 })
         }
     }
@@ -103,7 +104,8 @@ private fun AllOption(
     val allText = stringResource(id = com.main.movies.R.string.all)
     var totalCount = 0
     for (genre in genres) {
-        totalCount += genre.getOrNull(INDEX_OF_GENRE_COUNT).toString().toDoubleOrNull()?.toInt() ?: 0
+        totalCount += genre.getOrNull(INDEX_OF_GENRE_COUNT).toString().toDoubleOrNull()?.toInt()
+            ?: 0
     }
     DropdownMenuItem(
         onClick = {
@@ -111,7 +113,8 @@ private fun AllOption(
             selectedGenre.value = allText
             fetchMovies.invoke(null)
         }, content = {
-            Text(text = "$allText ($totalCount)")
+            val formattedCount = "%,d".format(totalCount)
+            Text(text = "$allText ($formattedCount)")
         })
 }
 
