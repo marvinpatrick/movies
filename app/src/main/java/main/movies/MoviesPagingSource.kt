@@ -2,6 +2,7 @@ package main.movies
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import app.AppConstants
 
 class MoviesPagingSource(private val moviesApi: MoviesApi, private val genre: String?) :
     PagingSource<Int, Movie>() {
@@ -9,7 +10,7 @@ class MoviesPagingSource(private val moviesApi: MoviesApi, private val genre: St
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         return try {
             val page = params.key ?: 1
-            val moviesList = moviesApi.getMovies(genre = genre).body() ?: arrayListOf()
+            val moviesList = getData(startIndex = getStartIndex(page))
 
             val prevKey = if (page > 1) page - 1 else null
             val nextKey = if (moviesList.isNotEmpty()) page + 1 else null
@@ -21,6 +22,19 @@ class MoviesPagingSource(private val moviesApi: MoviesApi, private val genre: St
             )
         } catch (e: Exception) {
             LoadResult.Error(e)
+        }
+    }
+
+    private suspend fun getData(startIndex: Int): ArrayList<Movie> {
+        return moviesApi.getMovies(genre = genre, from = startIndex).body()
+            ?: arrayListOf()
+    }
+
+    private fun getStartIndex(page: Int): Int {
+        return if (page == 1) {
+            0
+        } else {
+            (page - 1) * AppConstants.PAGE_SIZE
         }
     }
 
