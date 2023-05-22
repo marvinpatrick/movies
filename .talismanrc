@@ -7,6 +7,8 @@ fileignoreconfig:
   checksum: 4fae86f73951c93d1297104d45ddbd6aa693d84c470c847885aa1e7790b876ec
   checksum: f3fe08704402e4b005be4cb1a5b8262ca7577b8a81dd31589a0f7f955ed0f1a8
   checksum: 6be0d5e57a9ad1b1abe6770883bc4267d2b76c9f2f9fa36f7e4e50fa54b6bbac
+  checksum: 90b04110a3b565de07ad8ec94dd2b5865040a3cbd4abcf4ca267049c56e6fec5
 - filename: app/src/main/java/main/movies/MoviesScreen.kt
   checksum: a05815f142216738c050a4c12eac5c1123232cd718bbd9db6a1091697d1f384a
   checksum: 4205775e97e7205d33b6204d0ec8e4c671b9f245304b9143ffe0b488d8fbea3b
+  checksum: ac6ecb781d8ddede5bf67d59e37cb2436c015b6427ebeb47c464fa6759213831
