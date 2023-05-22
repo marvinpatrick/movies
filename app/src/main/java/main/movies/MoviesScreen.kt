@@ -77,20 +77,7 @@ private fun GenresList(
         expanded = expanded.value,
         onDismissRequest = { expanded.value = !expanded.value }) {
         AllOption(expanded, genres, selectedGenre, fetchMovies)
-        for (genre in genres) {
-            DropdownMenuItem(
-                onClick = {
-                    expanded.value = !expanded.value
-                    selectedGenre.value = genre.firstOrNull().toString()
-                    fetchMovies.invoke(selectedGenre.value)
-                }, content = {
-                    val genreName = genre.firstOrNull().toString()
-                    val genreCount =
-                        genre.getOrNull(INDEX_OF_GENRE_COUNT).toString().toDoubleOrNull()?.toInt()
-                    val formattedCount = "%,d".format(genreCount)
-                    Text(text = "$genreName (${formattedCount})")
-                })
-        }
+        Genres(genres, expanded, selectedGenre, fetchMovies)
     }
 }
 
@@ -116,6 +103,29 @@ private fun AllOption(
             val formattedCount = "%,d".format(totalCount)
             Text(text = "$allText ($formattedCount)")
         })
+}
+
+@Composable
+private fun Genres(
+    genres: MutableList<List<Any>>,
+    expanded: MutableState<Boolean>,
+    selectedGenre: MutableState<String>,
+    fetchMovies: (filter: String?) -> Unit
+) {
+    for (genre in genres) {
+        DropdownMenuItem(
+            onClick = {
+                expanded.value = !expanded.value
+                selectedGenre.value = genre.firstOrNull().toString()
+                fetchMovies.invoke(selectedGenre.value)
+            }, content = {
+                val genreName = genre.firstOrNull().toString()
+                val genreCount =
+                    genre.getOrNull(INDEX_OF_GENRE_COUNT).toString().toDoubleOrNull()?.toInt()
+                val formattedCount = "%,d".format(genreCount)
+                Text(text = "$genreName (${formattedCount})")
+            })
+    }
 }
 
 @Composable
