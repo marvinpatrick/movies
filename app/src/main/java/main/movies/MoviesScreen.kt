@@ -3,6 +3,7 @@ package main.movies
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -15,6 +16,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
@@ -25,6 +27,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemContentType
 import androidx.paging.compose.itemKey
 import app.AppConstants.INDEX_OF_GENRE_COUNT
+import com.main.movies.R
 
 @Composable
 fun MoviesScreen(
@@ -102,7 +105,15 @@ private fun AllOption(
             fetchMovies.invoke(null)
         }, content = {
             val formattedCount = "%,d".format(totalCount)
-            Text(text = "$allText ($formattedCount)")
+            val backgroundColor = if (selectedGenre.value == stringResource(id = R.string.select_a_genre) || selectedGenre.value == stringResource(
+                    id = R.string.all
+                )) {
+                Color.LightGray
+            } else MaterialTheme.colors.background
+            Text(
+                modifier = Modifier.background(backgroundColor),
+                text = "$allText ($formattedCount)"
+            )
         })
 }
 
@@ -124,7 +135,13 @@ private fun Genres(
                 val genreCount =
                     genre.getOrNull(INDEX_OF_GENRE_COUNT).toString().toDoubleOrNull()?.toInt()
                 val formattedCount = "%,d".format(genreCount)
-                Text(text = "$genreName (${formattedCount})")
+                val backgroundColor = if (selectedGenre.value == genreName) {
+                    Color.LightGray
+                } else MaterialTheme.colors.background
+                Text(
+                    modifier = Modifier.background(backgroundColor),
+                    text = "$genreName (${formattedCount})"
+                )
             })
     }
 }
