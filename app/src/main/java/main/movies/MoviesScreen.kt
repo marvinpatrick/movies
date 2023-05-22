@@ -1,9 +1,6 @@
 package main.movies
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -15,6 +12,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemContentType
@@ -135,7 +133,43 @@ private fun Movies(movies: LazyPagingItems<Movie>) {
 
 @Composable
 private fun MovieCard(movie: Movie?) {
-    Card(modifier = Modifier.fillMaxWidth()) {
-        Text(text = movie?.title ?: "None")
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+    ) {
+        Column {
+            Row {
+                val indexOfDash = movie?.release_date?.indexOf("-") ?: movie?.release_date?.length
+                val releaseYear = if (indexOfDash != null) {
+                    movie?.release_date?.substring(0, indexOfDash)
+                } else {
+                    movie?.release_date
+                }
+                Text(text = "${movie?.title ?: ""} $releaseYear")
+            }
+            Divider(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(2.dp)
+                    .padding(horizontal = 2.dp)
+            )
+            Text(text = movie?.overview ?: "")
+            movie?.genres?.let { genres ->
+                val genreStringBuilder = StringBuilder()
+                genres.forEachIndexed { index, genre ->
+                    genreStringBuilder.append(genre)
+                    if (shouldAddSeparator(index, genres)) {
+                        genreStringBuilder.append(", ")
+                    }
+                }
+                Text(text = genreStringBuilder.toString())
+            }
+        }
     }
 }
+
+private fun shouldAddSeparator(
+    index: Int,
+    genres: List<String?>
+): Boolean = genres.size > 1 && index < genres.size - 1
