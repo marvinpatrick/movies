@@ -14,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemContentType
@@ -21,16 +22,26 @@ import androidx.paging.compose.itemKey
 import app.AppConstants.INDEX_OF_GENRE_COUNT
 
 @Composable
-fun MoviesScreen(genres: MutableList<List<Any>>, movies: LazyPagingItems<Movie>) {
+fun MoviesScreen(
+    genres: MutableList<List<Any>>,
+    movies: LazyPagingItems<Movie>,
+    fetchMovies: (filter: String?) -> Unit
+) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
         val expanded = remember { mutableStateOf(false) }
-        val selectedGenre = remember { mutableStateOf("Select a genre") }
+        val selectGenre = stringResource(id = com.main.movies.R.string.select_a_genre)
+        val selectedGenre = remember { mutableStateOf(selectGenre) }
         GenresDropDown(expanded = expanded, selectedGenre = selectedGenre)
-        GenresList(expanded = expanded, genres = genres, selectedGenre = selectedGenre)
+        GenresList(
+            expanded = expanded,
+            genres = genres,
+            selectedGenre = selectedGenre,
+            fetchMovies = fetchMovies
+        )
         Movies(movies)
     }
 }
@@ -55,7 +66,8 @@ private fun GenresDropDown(
 private fun GenresList(
     expanded: MutableState<Boolean>,
     genres: MutableList<List<Any>>,
-    selectedGenre: MutableState<String>
+    selectedGenre: MutableState<String>,
+    fetchMovies: (filter: String?) -> Unit
 ) {
     DropdownMenu(
         expanded = expanded.value,
@@ -65,10 +77,11 @@ private fun GenresList(
                 onClick = {
                     expanded.value = !expanded.value
                     selectedGenre.value = genre.firstOrNull().toString()
+                    fetchMovies.invoke(selectedGenre.value)
                 }, content = {
-                    Text(
-                        text = "${genre.firstOrNull().toString()} (${genre.getOrNull(INDEX_OF_GENRE_COUNT)})"
-                    )
+                    val genreName = genre.firstOrNull().toString()
+                    val genreCount = genre.getOrNull(INDEX_OF_GENRE_COUNT)
+                    Text(text = "$genreName (${genreCount})")
                 })
         }
     }

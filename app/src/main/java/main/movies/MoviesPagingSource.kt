@@ -3,12 +3,13 @@ package main.movies
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 
-class MoviesPagingSource(private val moviesApi: MoviesApi) : PagingSource<Int, Movie>() {
+class MoviesPagingSource(private val moviesApi: MoviesApi, private val genre: String?) :
+    PagingSource<Int, Movie>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         return try {
             val page = params.key ?: 1
-            val moviesList = moviesApi.getMovies().body() ?: arrayListOf()
+            val moviesList = moviesApi.getMovies(genre = genre).body() ?: arrayListOf()
 
             val prevKey = if (page > 1) page - 1 else null
             val nextKey = if (moviesList.isNotEmpty()) page + 1 else null

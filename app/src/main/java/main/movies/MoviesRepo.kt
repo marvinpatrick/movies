@@ -12,9 +12,9 @@ class MoviesRepo(private val moviesApi: MoviesApi) {
         return moviesApi.getGenres().body()
     }
 
-    fun getMovies(): Flow<PagingData<Movie>> {
+    fun getMovies(genre: String? = null): Flow<PagingData<Movie>> {
         return Pager(PagingConfig(pageSize = AppConstants.PAGE_SIZE)) {
-            MoviesPagingSource(moviesApi = moviesApi)
+            MoviesPagingSource(moviesApi = moviesApi, genre = genre)
         }.flow
     }
 }

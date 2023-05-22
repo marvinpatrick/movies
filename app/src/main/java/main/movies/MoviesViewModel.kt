@@ -18,6 +18,12 @@ class MoviesViewModel @Inject constructor(private val moviesRepo: MoviesRepo) : 
         getGenres()
     }
 
+    fun getMovies(genre: String? = null) {
+        viewModelScope.launch {
+            movies.value = moviesRepo.getMovies(genre = genre)
+        }
+    }
+
     private fun getGenres() {
         viewModelScope.launch {
             moviesRepo.getGenres()?.forEach { genre ->

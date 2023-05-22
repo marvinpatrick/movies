@@ -29,6 +29,7 @@ class MainActivity : ComponentActivity() {
                     MoviesScreen(
                         genres = moviesViewModel.genres,
                         movies = moviesViewModel.movies.value.collectAsLazyPagingItems(),
+                        fetchMovies = { genre -> moviesViewModel.getMovies(genre = genre) }
                     )
                 }
             }
