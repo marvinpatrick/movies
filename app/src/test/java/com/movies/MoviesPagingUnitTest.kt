@@ -1,6 +1,7 @@
 package com.movies
 
 import androidx.paging.PagingSource
+import app.AppConstants
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import main.movies.Movie
@@ -46,7 +47,7 @@ class MoviesPagingUnitTest {
             val paginatedData = moviesPagingSource.load(
                 PagingSource.LoadParams.Refresh(
                     key = 1,
-                    loadSize = 2,
+                    loadSize = AppConstants.PAGE_SIZE,
                     placeholdersEnabled = false
                 )
             )
@@ -100,7 +101,7 @@ class MoviesPagingUnitTest {
             val paginatedData = moviesPagingSource.load(
                 PagingSource.LoadParams.Refresh(
                     key = 1,
-                    loadSize = 2,
+                    loadSize = AppConstants.PAGE_SIZE,
                     placeholdersEnabled = false
                 )
             )
