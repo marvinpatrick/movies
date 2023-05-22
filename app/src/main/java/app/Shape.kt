@@ -1,4 +1,4 @@
-package com.movies.ui.theme
+package app
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
