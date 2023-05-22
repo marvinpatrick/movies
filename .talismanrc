@@ -3,3 +3,7 @@ fileignoreconfig:
   checksum: f301105c8a8ea151b3f18ed0a7c5d6e60eb9f2d07010daa12117b1fbe72e56a0
 - filename: .idea/inspectionProfiles/Project_Default.xml
   checksum: 78cab0e8aba38a386052d790340cfd00d4aaa3153c44b9a6f6a216d82f7c426f
+- filename: app/src/main/java/main/movies/MoviesPagingSource.kt
+  checksum: 4fae86f73951c93d1297104d45ddbd6aa693d84c470c847885aa1e7790b876ec
+- filename: app/src/main/java/main/movies/MoviesScreen.kt
+  checksum: a05815f142216738c050a4c12eac5c1123232cd718bbd9db6a1091697d1f384a
