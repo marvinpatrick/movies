@@ -101,7 +101,10 @@ private fun AllOption(
     fetchMovies: (filter: String?) -> Unit
 ) {
     val allText = stringResource(id = com.main.movies.R.string.all)
-    val totalCount = 0
+    var totalCount = 0
+    for (genre in genres) {
+        totalCount += genre.getOrNull(INDEX_OF_GENRE_COUNT).toString().toDoubleOrNull()?.toInt() ?: 0
+    }
     DropdownMenuItem(
         onClick = {
             expanded.value = !expanded.value
